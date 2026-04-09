@@ -21,13 +21,13 @@ const App = () => {
       return [...prevNotes, note];
     });
   };
-  const addNote3 = (note) => {
-    const demo = "test"
-    console.log("This is a test...")
-    setNotes((prevNotes) => {
-      return [...prevNotes, note];
-    });
-  };
+  // const addNote3 = (note) => {
+  //   const demo = "test"
+  //   console.log("This is a test...")
+  //   setNotes((prevNotes) => {
+  //     return [...prevNotes, note];
+  //   });
+  // };
   const editNote = (editedNote) => {
     setNotes(prevNotes => {
       const newArray = prevNotes.map(note => {
