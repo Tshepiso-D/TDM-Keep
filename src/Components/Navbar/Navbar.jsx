@@ -1,6 +1,6 @@
 import "./Navbar.css"
 
-const Navbar = () => {
+const Navbar = ({ theme, toggleTheme }) => {
   return (
     <nav>
       <div className="logo-area">
@@ -37,6 +37,14 @@ const Navbar = () => {
         <div className="tooltip">
           <span className="material-icons-outlined hover">settings</span>
           <span className="tooltip-text">Settings</span>
+        </div>
+        <div className="tooltip" onClick={toggleTheme}>
+          <span className="material-icons-outlined hover">
+            {theme === "light" ? "dark_mode" : "light_mode"}
+          </span>
+          <span className="tooltip-text">
+            {theme === "light" ? "Dark mode" : "Light mode"}
+          </span>
         </div>
       </div>
       <div className="profile-actions-area">

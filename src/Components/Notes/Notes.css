@@ -7,10 +7,10 @@
 }
 
 .note {
-  background: white;
+  background: var(--surface-color);
   width: 240px;
   margin: 10px;
-  border: 1px solid #e0e1e0;
+  border: 1px solid var(--note-border-color);
   border-radius: 8px;
   position: relative;
   cursor: pointer;
@@ -19,10 +19,12 @@
   box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
 }
 .note .title {
+  color: var(--text-color);
   width: 100%;
   margin: 15px 0 0 15px;
 }
 .note .text {
+  color: var(--text-color);
   width: 100%;
   margin: 10px 0 0 15px;
 }
@@ -34,10 +36,14 @@
   visibility: hidden;
 }
 .note-footer .material-icons-outlined {
-  color: #5f6368;
+  color: var(--text-muted);
 }
 .note .check-circle {
   position: absolute;
   left: -10px;
   top: -10px;
+}
+
+.notes p {
+  color: var(--text-muted);
 }

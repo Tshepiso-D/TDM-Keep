@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 //import reactLogo from './assets/react.svg'
 //import viteLogo from './assets/vite.svg'
 //import heroImg from './assets/hero.png'
@@ -15,6 +15,16 @@ const App = () => {
   const [notes, setNotes] = useState(NOTES);
   const [selectedNote, setSelectedNote] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [theme, setTheme] = useState(() => {
+    const savedTheme = localStorage.getItem("tdm-keep-theme");
+    if (savedTheme === "light" || savedTheme === "dark") return savedTheme;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  });
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("tdm-keep-theme", theme);
+  }, [theme]);
 
   const addNote = (note) => {
     setNotes((prevNotes) => {
@@ -52,9 +62,13 @@ const App = () => {
     });
   };
 
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+  };
+
   return (
-    <div>
-      <Navbar />
+    <div className={`app theme-${theme}`}>
+      <Navbar theme={theme} toggleTheme={toggleTheme} />
       <Sidebar />
       <Form addNote={addNote} />
       <Notes

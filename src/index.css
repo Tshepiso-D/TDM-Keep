@@ -1,10 +1,39 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap");
 
+:root {
+  --bg-color: #ffffff;
+  --surface-color: #ffffff;
+  --surface-muted: #f1f3f4;
+  --text-color: #202124;
+  --text-muted: #5f6368;
+  --border-color: #dadce0;
+  --note-border-color: #e0e1e0;
+  --sidebar-active: #fef0c3;
+  --tooltip-bg: #323232;
+}
+
+:root[data-theme="dark"] {
+  --bg-color: #202124;
+  --surface-color: #2d2e30;
+  --surface-muted: #3c4043;
+  --text-color: #e8eaed;
+  --text-muted: #bdc1c6;
+  --border-color: #5f6368;
+  --note-border-color: #5f6368;
+  --sidebar-active: #5f4b22;
+  --tooltip-bg: #111315;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
+}
+
+body {
+  background: var(--bg-color);
+  color: var(--text-color);
 }
 
 /* HOVER EFEECTS */
@@ -13,8 +42,8 @@
   padding: 10px;
 }
 .hover:hover {
-  background: #f1f3f4;
-  color: black;
+  background: var(--surface-muted);
+  color: var(--text-color);
   border-radius: 50%;
   cursor: pointer;
 }
@@ -27,8 +56,8 @@
   left: 0;
   top: 100%;
   font-size: 0.78rem;
-  background-color: #323232;
-  color: white;
+  background-color: var(--tooltip-bg);
+  color: var(--text-color);
   opacity: 0.8;
   padding: 5px;
   white-space: nowrap;
