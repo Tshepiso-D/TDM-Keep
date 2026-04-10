@@ -10,11 +10,13 @@ import Modal from "./Components/Modal/Modal";
 import './App.css'
 
 const NOTES = [];
+const NOTE_COLORS = ["#fff475", "#ccff90", "#a7ffeb", "#cbf0f8", "#fdcfe8"];
 
 const App = () => {
   const [notes, setNotes] = useState(NOTES);
   const [selectedNote, setSelectedNote] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeView, setActiveView] = useState("notes");
   const [theme, setTheme] = useState(() => {
     const savedTheme = localStorage.getItem("tdm-keep-theme");
     if (savedTheme === "light" || savedTheme === "dark") return savedTheme;
@@ -55,6 +57,21 @@ const App = () => {
       return prevNotes.filter((note) => id !== note.id);
     });
   };
+  const setReminder = (id, reminder) => {
+    setNotes((prevNotes) =>
+      prevNotes.map((note) => (note.id === id ? { ...note, reminder } : note))
+    );
+  };
+  const cycleNoteColor = (id) => {
+    setNotes((prevNotes) =>
+      prevNotes.map((note) => {
+        if (note.id !== id) return note;
+        const currentColorIndex = NOTE_COLORS.indexOf(note.color);
+        const nextColorIndex = (currentColorIndex + 1) % NOTE_COLORS.length;
+        return { ...note, color: NOTE_COLORS[nextColorIndex] };
+      })
+    );
+  };
   const toggleModal = () => {
     // open or close the modal based on previous state - setIsModalOpen
     setIsModalOpen((prevState) => {
@@ -66,14 +83,22 @@ const App = () => {
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
   };
 
+  const filteredNotes =
+    activeView === "reminders"
+      ? notes.filter((note) => Boolean(note.reminder))
+      : notes;
+
   return (
     <div className={`app theme-${theme}`}>
       <Navbar theme={theme} toggleTheme={toggleTheme} />
-      <Sidebar />
+      <Sidebar activeView={activeView} setActiveView={setActiveView} />
       <Form addNote={addNote} />
       <Notes
-        notes={notes}
+        notes={filteredNotes}
+        emptyMessage={activeView === "reminders" ? "No reminder notes yet." : "Notes you add appear here."}
         deleteNote={deleteNote}
+        setReminder={setReminder}
+        cycleNoteColor={cycleNoteColor}
         toggleModal={toggleModal}
         setSelectedNote={setSelectedNote}
       />

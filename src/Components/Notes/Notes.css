@@ -44,6 +44,29 @@
   top: -10px;
 }
 
+.note .reminder-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin: 10px 0 0 12px;
+  padding: 2px 8px;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.note .reminder-chip .material-icons-outlined {
+  font-size: 0.95rem;
+  padding: 0;
+}
+
+.note .reminder-chip:hover {
+  background: var(--surface-muted);
+}
+
 .notes p {
   color: var(--text-muted);
 }

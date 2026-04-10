@@ -23,6 +23,8 @@ const Form = (props) => {
         id: uid(),
         title,
         text,
+        reminder: null,
+        color: null,
       });
       setIsActiveForm(false);
     } else {
